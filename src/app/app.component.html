@@ -1,0 +1,24 @@
+<div class="container">
+  <header>
+    <h2>
+      Ejemplo de SweetAlert2 con componente Angular.
+    </h2>
+  </header>
+  <div>
+    <swal title="SweetAlert2" [showConfirmButton]="false" #openSwal>
+      <app-information *swalPortal="swalTargets.content" (userData)="checkData($event)"></app-information>
+    </swal>
+  </div>
+  <div>
+    <button [swal]="openSwal" (click)="showData = false">Open</button>
+  </div>
+  <ng-container *ngIf="showData; then information; else hideInformation">
+  </ng-container>
+  <ng-template #information>
+    <p>Su nombre es: {{user.name}}</p>
+    <p>Su Apellido es: {{user.surname}}</p>
+  </ng-template>
+  <ng-template #hideInformation>
+    Click en el Input
+  </ng-template>
+</div>
